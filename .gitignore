@@ -8,47 +8,53 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
-/coverage
-/playwright-report
-/test-results
-
 # next.js
 /.next/
 /out/
 
 # production
 /build
+/dist
 
 # Panda CSS generated
 /styled-system
 
-# misc
-.DS_Store
-*.pem
+# testing
+/coverage
+/playwright-report
+/test-results
+/blob-report
 
-# debug
+# env files (commit .env.example, never real secrets)
+.env
+.env.*
+!.env.example
+
+# debug logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# vercel
-.vercel
-
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# OS
+.DS_Store
+Thumbs.db
 
 # IDE
 .vscode/*
 !.vscode/settings.json
 !.vscode/extensions.json
 .idea/
+*.swp
+*.swo
+
+# secrets / certs
+*.pem
+*.key
+
+# misc
+*.log

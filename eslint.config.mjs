@@ -1,13 +1,9 @@
-import { FlatCompat } from '@eslint/eslintrc';
+import nextConfig from 'eslint-config-next/core-web-vitals';
 import tseslint from 'typescript-eslint';
 
-const compat = new FlatCompat({
-  baseDirectory: import.meta.dirname,
-});
-
 const eslintConfig = tseslint.config(
-  // Next.js recommended rules
-  ...compat.extends('next/core-web-vitals'),
+  // Next.js recommended rules (native flat config)
+  ...nextConfig,
 
   // TypeScript strict rules
   ...tseslint.configs.strict,
