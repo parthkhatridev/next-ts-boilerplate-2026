@@ -1,12 +1,12 @@
 export const siteConfig = {
-  name: 'Next Boilerplate',
-  description: 'A modern Next.js boilerplate with best practices.',
+  name: 'next-ts-boilerplate-2026',
+  description: '',
   url: process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000',
-  ogImage: '/og.png',
+  ogImage: '',
   links: {
-    github: 'https://github.com/your-username/next-boilerplate',
+    github: '',
   },
-  creator: 'Your Name',
+  creator: '',
 } as const;
 
 export type SiteConfig = typeof siteConfig;

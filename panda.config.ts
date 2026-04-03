@@ -31,8 +31,7 @@ export default defineConfig({
           },
         },
         fonts: {
-          sans: { value: 'var(--font-geist-sans), system-ui, sans-serif' },
-          mono: { value: 'var(--font-geist-mono), monospace' },
+          sans: { value: 'var(--font-roboto), system-ui, sans-serif' },
         },
         sizes: {
           container: {
@@ -138,24 +137,6 @@ export default defineConfig({
   globalCss: {
     html: {
       scrollBehavior: 'smooth',
-    },
-    body: {
-      bg: 'bg',
-      color: 'fg',
-      fontFamily: 'sans',
-      lineHeight: '1.6',
-      WebkitFontSmoothing: 'antialiased',
-      MozOsxFontSmoothing: 'grayscale',
-    },
-    '*, *::before, *::after': {
-      borderColor: 'border',
-    },
-    'a': {
-      color: 'accent',
-      textDecoration: 'none',
-      _hover: {
-        textDecoration: 'underline',
-      },
     },
   },
 
