@@ -1,0 +1,36 @@
+---
+description: Panda CSS theme architecture — token hierarchy, color system, and how to extend
+globs: panda.config.ts, src/theme/**
+alwaysApply: false
+---
+
+# Panda CSS Theme
+
+The default Panda preset colors are **stripped** via plugin. All colors are custom.
+
+## Token hierarchy
+
+**Base tokens** (`src/theme/tokens/colors.ts`): only `black` and `white` with alpha scales (a1–a12).
+
+**Semantic color palettes** (`src/theme/colors/`): `gray` (slate), `blue`, `red`, `green`. Each palette is a 12-step Radix-style scale (`1`–`12`, `a1`–`a12`) with light/dark values, plus variant groups:
+
+- `solid` — `bg` (DEFAULT, hover), `fg`
+- `subtle` — `bg` (DEFAULT, hover, active), `fg`
+- `surface` — `bg` (DEFAULT, hover, active), `border` (DEFAULT, hover), `fg`
+- `outline` — `bg` (hover, active), `border`, `fg`
+- `plain` — `bg` (hover, active), `fg`
+
+**Global semantic tokens**: `fg.default` (gray.12), `fg.muted` (gray.11), `fg.subtle` (gray.10), `border` (gray.4), `error` (red.9). Radii aliases: `l1`→xs, `l2`→sm, `l3`→md.
+
+## Adding a new color palette
+
+1. Create `src/theme/colors/{name}.ts` using `defineSemanticTokens.colors` — follow the slate/blue pattern (12-step + variant groups).
+2. Import in `panda.config.ts` and add to `semanticTokens.colors`.
+
+## Conditions
+
+`_light`/`_dark` match `[data-color-mode=light|dark]` (set by next-themes). Interaction conditions: `hover` (`:not(:disabled):hover`), `active`, `checked`, `invalid`, `on`, `pinned` — defined in `src/theme/conditions.ts`.
+
+## Recipes
+
+`src/theme/recipes/index.ts` exports `recipes` and `slotRecipes`. Add Park UI or custom recipes there.

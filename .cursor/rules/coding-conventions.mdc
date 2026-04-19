@@ -1,0 +1,30 @@
+---
+description: Core coding conventions — TypeScript, functions, comments, error handling, logging, Zod, server actions, API routes, testing, and file naming
+alwaysApply: true
+---
+
+# Coding Conventions
+
+**TypeScript**: Named exports (default only where Next.js requires). Explicit return types on exports. No `any`. Use `satisfies`. Early returns over nested `if/else`.
+
+**Functions**: `function` declarations for all definitions. Arrow functions only for inline callbacks.
+
+**Comments**: One-line JSDoc on every export (WHAT not HOW). Inline `//` only for WHY. No `@param`/`@returns`. No commented-out code. `// TODO: description`.
+
+**Server Actions**: `'use server'` at top. Zod validate inputs. Return `{ success: true, data }` or `{ success: false, error }`. `revalidatePath`/`revalidateTag` after mutations.
+
+**API Routes**: Zod validate at top. `{ data }` or `{ error: { code, message } }`. Try/catch + `logger.error()`. Correct status codes.
+
+**Zod**: Co-export schema + inferred type. `.describe()` for LLM fields. Strict AI schemas.
+
+**Tests**: Sentence test names. AAA pattern. MSW for external APIs (no `vi.mock()`). `.integration.test.ts` suffix. Colocated.
+
+**Errors**: Custom classes with `cause` chaining. Generic user messages. Always log.
+
+**Logging**: `logger` only (never console). Structured context. Correct levels (error/warn/info/debug).
+
+**Files**: kebab-case. `.tsx` only for JSX. `@/` alias for imports. Inline type imports.
+
+## Rule Maintenance
+
+These rules are maintained manually. The user will periodically ask the AI to review them for accuracy. Never modify `.mdc` files without explicit user approval.

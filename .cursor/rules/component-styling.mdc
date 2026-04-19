@@ -1,0 +1,17 @@
+---
+description: React component patterns and Panda CSS / Park UI styling conventions
+globs: **/*.tsx
+alwaysApply: false
+---
+
+# Components
+
+Server Components by default. One per file. Props type named `{Name}Props`, destructured in signature. `<Suspense>` for loading, not `isLoading` state.
+
+# Styling
+
+Use Panda's `styled()` factory from `@/styled-system/jsx` — never `css()` (sole exception: `layout.tsx` body className for font variable merge). Define each styled element as a standalone PascalCase `const` at the bottom of the file, separated by a `// Styles` comment. Use `variants` on `styled()` for multi-variant elements (not `cva()`).
+
+Always prefer Park UI components (`Heading`, `Text`, `Badge`, `Button`, `Input`, `Card`, `Table`, `Skeleton`, `Alert`, `Spinner`) from `@/components/ui` over hand-styled primitives. Import all Park UI components — including slot-recipe components (Card, Table, Alert, Progress) — as named imports from the barrel: `import { Heading, Text, Card } from '@/components/ui'`. Access sub-parts via dot notation: `<Card.Root>`, `<Card.Body>`, `<Table.Header>`, etc. Never import directly from individual UI files (e.g. `@/components/ui/card`).
+
+All values must come from Panda design tokens — no hardcoded colors, sizes, or spacing. Use semantic tokens (`fg.default`, `fg.muted`, `fg.subtle`, `border`, `truth.high`, etc.) defined in `panda.config.ts`. Mobile-first responsive via object syntax: `px: { base: '4', md: '6' }`. Dark mode via `_dark`/`_light` conditions on semantic tokens.

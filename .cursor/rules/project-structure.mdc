@@ -1,0 +1,30 @@
+---
+description: Project directory layout, key architecture decisions, and where to place new code
+alwaysApply: true
+---
+
+# Project Structure
+
+```
+src/
+  app/            # Next.js App Router (pages, layouts, API routes, error/loading/not-found)
+  components/
+    providers/    # Client-side context providers (theme, query)
+    ui/           # Park UI components (barrel-exported)
+  config/         # App config (site metadata) and Zod-validated env (env.ts)
+  hooks/          # Custom React hooks (barrel-exported from index.ts)
+  lib/            # Pure utilities and helpers; colocate tests as __tests__/*.test.ts
+  stores/         # Zustand stores (persist + devtools middleware)
+  tests/          # Vitest global setup
+  theme/          # Panda CSS theme modules (tokens, colors, conditions, recipes, keyframes)
+  types/          # Shared TypeScript types
+```
+
+## Key conventions
+
+- `styled-system/` is **generated** by `panda codegen` and gitignored. Never edit it. Aliased as `@/styled-system/*`.
+- Env vars: add new vars to the Zod schema **and** the `safeParse` mapping in `src/config/env.ts`. Import `env` from `@/config/env` — never read `process.env` directly in app code.
+- Providers: wrap new client providers inside `src/components/providers/index.tsx`. Keep `ThemeProvider` outermost.
+- Stores: use Zustand with `devtools(persist(...))` middleware stack. One store per domain concern.
+- Next.js: `typedRoutes: true` is enabled — use the `Route` type for href values. Turbopack is the dev bundler.
+- Fonts: loaded via `next/font` in `src/lib/fonts.ts`, applied as CSS variable on `<body>`.
